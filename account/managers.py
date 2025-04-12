@@ -9,17 +9,16 @@ class UserManager(BaseUserManager):
             if password:
                 user.set_password(password)
             user.username = "user"
-            user.save(using=self.db)
-            user.is_staff = True
+            user.save(using=self._db)
         return user
 
     def create_user(self,email, phone, **extra_fields):
-        extra_fields.setdefault('is_superuser', False)
         extra_fields.setdefault('is_staff', False)
+        extra_fields.setdefault('is_superuser', False)
         return self._create_user(email, phone, **extra_fields)
 
     def create_superuser(self,email, phone,password, **extra_fields):
-        extra_fields.setdefault('is_superuser', True)
         extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
         extra_fields.setdefault('is_active', True)
         return self._create_user(email, phone,password, **extra_fields)
