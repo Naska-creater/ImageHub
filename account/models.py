@@ -7,7 +7,7 @@ from account.managers import UserManager
 class User(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(max_length=255,blank= False, verbose_name='Имя')
     second_name = models.CharField(max_length=255,blank= False, verbose_name='Фамилия')
-    nick_name = models.CharField(max_length=255,unique=True)
+    nick_name = models.CharField(max_length=255, null=True, blank=True)
     email = models.CharField(max_length=255,blank= False, unique=True)
     phone = models.CharField(max_length=255, unique=True, verbose_name='Телефон')
     password = models.CharField(max_length=255, verbose_name='Пароль')
