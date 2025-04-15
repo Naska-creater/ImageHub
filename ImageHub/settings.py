@@ -14,7 +14,7 @@ import os
 from pathlib import Path
 
 import environ
-from django.conf.global_settings import AUTH_USER_MODEL
+from django.conf.global_settings import AUTH_USER_MODEL, MEDIA_URL
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 root = environ.Path(__file__) - 2
@@ -50,6 +50,7 @@ INSTALLED_APPS = [
 
 INSTALLED_APPS += [
     'account.apps.AccountConfig',
+    'image.apps.ImageConfig',
     'rest_framework',
 ]
 
@@ -134,6 +135,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+MEDIA_URL = 'image/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "image")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
