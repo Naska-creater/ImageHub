@@ -4,7 +4,7 @@ from account.models import User
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255,unique=True)
     created_ad = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
