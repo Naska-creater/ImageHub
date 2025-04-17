@@ -6,6 +6,11 @@ from image.models import Category, Image
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
+        fields = ['name']
+
+class CategoryChangeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
         fields = '__all__'
 
 class ImageSerializer(serializers.ModelSerializer):
