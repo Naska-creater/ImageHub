@@ -13,8 +13,23 @@ class CategoryChangeSerializer(serializers.ModelSerializer):
         model = Category
         fields = '__all__'
 
-class ImageSerializer(serializers.ModelSerializer):
+class ImageViewSerializer(serializers.ModelSerializer):
+    user = serializers.CharField(source='user.nick_name', read_only=True)
+    category = serializers.CharField(source='category.name', read_only=True)
+
     class Meta:
         model = Image
-        fields = '__all__'
+        fields = ('file', 'description','user','category')
 
+class ImageCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Image
+        fields =('file', 'description','category','user')
+        read_only_fields = ('user',)
+
+class ImageChangeSerializer(serializers.ModelSerializer):
+    category = serializers.CharField(source='category.name')
+
+    class Meta:
+        model = Image
+        fields = ('id', 'file', 'description','category')
