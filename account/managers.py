@@ -13,7 +13,7 @@ class UserManager(BaseUserManager):
             user.save(using=self._db)
         return user
 
-    def create_user(self,email, phone,nick_name, **extra_fields):
+    def create_user(self,email, phone,nick_name,password, **extra_fields):
 
         from account.models import User
 
@@ -21,7 +21,7 @@ class UserManager(BaseUserManager):
         extra_fields.setdefault('is_superuser', False)
         if User.objects.filter(nick_name=nick_name).exists() or nick_name is None:
             raise ValidationError(f'{nick_name} уже занят')
-        return self._create_user(email, phone, **extra_fields)
+        return self._create_user(email, phone, password, **extra_fields)
 
     def create_superuser(self,email, phone,password, **extra_fields):
         extra_fields.setdefault('is_staff', True)
