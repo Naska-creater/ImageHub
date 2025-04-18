@@ -15,7 +15,7 @@ class Image(models.Model):
     description = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    delete = models.BooleanField(default=False)
+    is_delete = models.BooleanField(default=False)
     uploaded_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     deleted_at = models.DateTimeField(null=True, blank=True)

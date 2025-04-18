@@ -19,7 +19,7 @@ class ImageViewSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Image
-        fields = ('file', 'description','user','category')
+        fields = ('pk', 'file', 'description','user','category')
 
 class ImageCreateSerializer(serializers.ModelSerializer):
     class Meta:

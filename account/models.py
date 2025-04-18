@@ -11,7 +11,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.CharField(max_length=255,blank= False, unique=True)
     phone = models.CharField(max_length=255, unique=True, verbose_name='Телефон')
     password = models.CharField(max_length=255, verbose_name='Пароль')
-    is_active = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
     objects = UserManager()
