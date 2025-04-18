@@ -52,6 +52,7 @@ INSTALLED_APPS += [
     'account.apps.AccountConfig',
     'image.apps.ImageConfig',
     'rest_framework',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
