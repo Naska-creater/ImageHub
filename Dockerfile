@@ -8,6 +8,4 @@ RUN pip install --upgrade pip
 
 RUN pip install -r /app/requirements.txt
 
-COPY ImageHub/ .
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

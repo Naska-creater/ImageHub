@@ -1,0 +1,35 @@
+services:
+  web:
+    build: ./
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py createcachetable &&
+             python manage.py collectstatic --noinput &&
+             gunicorn ImageHub.wsgi:application -b 0.0.0.0:8000"
+
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    restart: always
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+
+  db:
+    image: postgres:latest
+    ports:
+      - "${POSTGRES_PORT}:${POSTGRES_PORT}"
+    command: -p ${POSTGRES_PORT}
+    volumes:
+      - pgdata:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    env_file:
+      - .env
+
+volumes:
+  pgdata:
